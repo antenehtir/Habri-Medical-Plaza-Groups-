@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Habari Medical Plaza and Groups | Unified Healthcare Ecosystem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --bg-body: #0a1a1f;
+      --card-bg: rgba(18, 30, 34, 0.78);
+      --text-primary: #eef4ff;
+      --text-secondary: #cfdfe5;
+      --accent: #2dd4bf;
+      --accent-dark: #1f8a72;
+      --border: rgba(64, 164, 138, 0.35);
+      --glass-bg: rgba(18, 30, 34, 0.75);
+      --search-bg: rgba(18, 30, 34, 0.8);
+      --shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+      --btn-outline-border: rgba(45,212,191,0.5);
+      --btn-text: #ecfdf5;
+      --btn-bg: rgba(255,255,255,0.07);
+      --tag-bg: rgba(45, 212, 191, 0.15);
+      --tag-color: #cff7ed;
+      --special-bg: rgba(255,165,0,0.2);
+      --special-color: #ffe4a0;
+      --emergency-bg: rgba(239,68,68,0.25);
+      --emergency-color: #ffb3b3;
+      --link-color: #e0f2fe;
+      --info-row-color: #c2dbd1;
+      --additional-note-color: #b9d9cd;
+      --social-icon-color: #cbd9d0;
+      --footer-text: #ffffff;
+      --badge-bg: rgba(45,212,191,0.25);
+      --badge-color: #b9f5e6;
+      --logo-bg: transparent;
+    }
+    body.light {
+      --bg-body: #f0f7f4;
+      --card-bg: rgba(255,255,255,0.82);
+      --text-primary: #0a1a1f;
+      --text-secondary: #1e3a3a;
+      --accent: #1b8c6b;
+      --accent-dark: #157a5c;
+      --border: rgba(30,130,110,0.35);
+      --glass-bg: rgba(255,255,255,0.7);
+      --search-bg: rgba(255,255,255,0.7);
+      --shadow: 0 20px 35px -12px rgba(0,0,0,0.15);
+      --btn-outline-border: rgba(30,130,110,0.5);
+      --btn-text: #0a1a1f;
+      --btn-bg: rgba(0,0,0,0.05);
+      --tag-bg: rgba(30,130,110,0.1);
+      --tag-color: #0b4237;
+      --special-bg: rgba(220,140,0,0.15);
+      --special-color: #7a4e00;
+      --emergency-bg: rgba(200,50,50,0.15);
+      --emergency-color: #8b1a1a;
+      --link-color: #0b4237;
+      --info-row-color: #2a4a3f;
+      --additional-note-color: #2a4a3f;
+      --social-icon-color: #2a4a3f;
+      --footer-text: #0a1a1f;
+      --badge-bg: rgba(30,130,110,0.2);
+      --badge-color: #0b4237;
+      --logo-bg: rgba(255,255,255,0.4);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      transition: background 0.3s, color 0.3s;
+      padding-bottom: 2rem;
+    }
+
+    .bg-overlay {
+      position: fixed; top:0; left:0; width:100%; height:100%;
+      background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI1LTA1L3Jhd3BpeGVsX29mZmljZV8zMF9hYnN0cmFjdF9ncmFkaWVudF93aGl0ZV9iYWNrZ3JvdW5kX3ZlY3Rvcl9wcl9kZGY3ZTJiNC0wMjU3LTRjMTUtOWFjNS0xMmQwZTA0N2E4MWYtam9iMjAyNl8xLW1hbmI5a3pkLmpwZw.jpg');
+      background-size: cover; background-position: center; opacity: 0.7; z-index: -2;
+    }
+    .container { max-width:1400px; margin:0 auto; padding: 1rem 1.5rem 4rem; position:relative; z-index:2; }
+
+    /* Top Nav */
+    .top-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      background: var(--glass-bg); backdrop-filter: blur(14px);
+      border-radius: 2rem; padding: 0.8rem 2rem; margin-bottom: 2rem;
+      border: 1px solid var(--border); box-shadow: var(--shadow);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.8rem; }
+    .nav-logo {
+      width: 45px; height: 45px; border-radius: 12px;
+      background: var(--logo-bg);
+    }
+    .nav-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+    .nav-btn {
+      padding: 0.5rem 1.2rem; border-radius: 2rem; font-weight: 600;
+      text-decoration: none; color: #fff; background: var(--accent-dark);
+      transition: 0.2s; border: none; cursor: pointer;
+    }
+    .nav-btn:hover { background: var(--accent); }
+    .icon-btn {
+      background: transparent; border: 1px solid var(--border); color: var(--text-primary);
+      padding: 0.5rem 0.8rem; border-radius: 2rem; cursor: pointer; font-size: 1rem;
+    }
+    .icon-btn:hover { background: rgba(45,212,191,0.2); }
+
+    /* Hero */
+    .hero { text-align: center; margin-bottom: 1.5rem; }
+    .hero-box {
+      display: inline-block; background: var(--glass-bg); backdrop-filter: blur(16px);
+      border-radius: 2rem; border: 1px solid var(--border);
+      box-shadow: var(--shadow); max-width: 700px; overflow: hidden;
+      padding: 0;
+    }
+    .hero-logo {
+      width: 100%;
+      height: 120px;               /* short, wide banner */
+      object-fit: cover;           /* crops the image to fill the strip */
+      display: block;
+      border-radius: 2rem 2rem 0 0;
+    }
+    .hero-content {
+      padding: 1.5rem 2.5rem;
+    }
+    h1 {
+      font-size: 2.2rem; font-weight: 700;
+      background: linear-gradient(135deg, #FFFFFF 0%, #B2F0E0 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    body.light h1 {
+      background: linear-gradient(135deg, #0a1a1f 0%, #1b8c6b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .tagline { color: var(--text-secondary); margin-top: 0.5rem; }
+
+    /* Quick action buttons */
+    .quick-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+      margin: 1.8rem 0 1rem;
+    }
+    .quick-btn {
+      background: var(--glass-bg); backdrop-filter: blur(8px);
+      border: 1px solid var(--border); padding: 0.7rem 1.4rem;
+      border-radius: 2rem; color: var(--text-primary); text-decoration: none;
+      display: flex; align-items: center; gap: 0.6rem; font-weight: 600;
+      transition: 0.2s; font-size: 0.9rem;
+    }
+    .quick-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+    .quick-btn i { font-size: 1.1rem; }
+
+    .stats-bar {
+      display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0;
+      background: var(--glass-bg); backdrop-filter: blur(8px);
+      border-radius: 2rem; padding: 1rem 2rem; border: 1px solid var(--border);
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: 0.9rem; color: var(--text-secondary); }
+
+    .search-wrapper { max-width: 650px; margin: 2rem auto; }
+    .search-box {
+      display: flex; align-items: center; background: var(--search-bg); backdrop-filter: blur(14px);
+      border-radius: 60px; border: 1px solid var(--border); padding: 0.6rem 1.2rem; transition: 0.25s;
+    }
+    .search-box:focus-within { border-color: var(--accent); }
+    .search-box i { color: var(--accent); margin-right: 0.75rem; }
+    .search-box input { background: transparent; border: none; width: 100%; padding: 0.6rem 0;
+      color: var(--text-primary); font-size: 1rem; outline: none; }
+    .search-box input::placeholder { color: #9ab3bf; }
+    .result-stats { text-align: center; color: var(--text-primary); margin-top: 0.5rem; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.8rem; margin-top: 2rem; }
+    .cards-grid.list-view { display: flex; flex-direction: column; }
+    .card {
+      background: var(--card-bg); backdrop-filter: blur(14px); border-radius: 2rem;
+      border: 1px solid var(--border); overflow: hidden; transition: 0.25s;
+      box-shadow: var(--shadow); display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .list-view .card { flex-direction: row; align-items: center; }
+    .card-header { padding: 1.4rem; display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(72,187,150,0.25); }
+    .list-view .card-header { border-bottom: none; width: 250px; }
+    .card-logo { width: 70px; height: 70px; object-fit: contain; background: rgba(255,255,255,0.05); border-radius: 18px; padding: 4px; }
+    .card-title h3 { color: var(--text-primary); }
+    .badge { padding: 0.2rem 0.7rem; border-radius: 40px; font-size: 0.7rem; background: var(--badge-bg); color: var(--badge-color); }
+    .emergency-tag { background: var(--emergency-bg); color: var(--emergency-color); }
+    .card-body { padding: 1.2rem 1.4rem; flex:1; display: flex; flex-direction: column; gap: 0.9rem; }
+    .desc { font-size: 0.9rem; color: var(--text-secondary); }
+    .info-row { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 0.85rem; color: var(--info-row-color); }
+    .info-row i { width: 1.3rem; margin-top: 0.2rem; color: var(--accent); }
+    .info-row a { color: var(--link-color); text-decoration: none; }
+    .info-row a:hover { color: var(--accent); text-decoration: underline; }
+    .btn-group { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .btn {
+      padding: 0.5rem 1rem; border-radius: 40px; font-size: 0.8rem; font-weight: 500;
+      text-decoration: none; border: 1px solid var(--btn-outline-border); transition: 0.2s;
+      color: var(--btn-text); background: var(--btn-bg); cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-primary { background: linear-gradient(105deg, var(--accent-dark), var(--accent)); border: none; color: #fff; }
+    .btn-primary:hover { transform: scale(1.03); }
+    .btn-outline:hover { background: rgba(45,212,191,0.25); }
+    body.light .btn-primary { color: #fff; }
+
+    .social-links { display: flex; gap: 0.7rem; margin-top: 0.5rem; border-top: 1px dashed rgba(72,187,150,0.35); padding-top: 0.5rem; flex-wrap: wrap; }
+    .social-icon { color: var(--social-icon-color); font-size: 1.1rem; display: inline-flex; align-items: center; gap: 0.3rem; text-decoration: none; }
+    .social-icon:hover { color: var(--accent); }
+    .social-label { font-size: 0.75rem; }
+    .additional-note { font-size: 0.75rem; color: var(--additional-note-color); font-style: italic; }
+    .hidden-content { display: none; margin-top: 0.5rem; }
+    .hidden-content.show { display: block; }
+
+    /* Footer tabs */
+    footer { margin-top: 4rem; text-align: center; }
+    .footer-box {
+      background: var(--glass-bg); backdrop-filter: blur(12px);
+      border-radius: 2rem; padding: 1.5rem 2rem; border: 1px solid var(--border);
+      color: var(--footer-text);
+    }
+    .footer-tabs {
+      display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;
+      margin: 1rem 0;
+    }
+    .footer-tab {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--footer-text); padding: 0.5rem 1.2rem; border-radius: 2rem;
+      font-size: 0.85rem; cursor: pointer; text-decoration: none;
+      transition: 0.2s; backdrop-filter: blur(8px);
+    }
+    .footer-tab.active, .footer-tab:hover {
+      background: var(--accent); color: #000; border-color: var(--accent);
+    }
+
+    @media (max-width: 750px) {
+      .top-nav { flex-direction: column; gap: 0.8rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .list-view .card { flex-direction: column; }
+      .hero-content { padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body class="dark">
+<div class="bg-overlay"></div>
+<div class="container">
+  <div class="top-nav">
+    <div class="nav-brand">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcEjafghV26Xt5NYZZaQ-UI9JIj_ZSXiNopw&s" class="nav-logo" alt="Habari Medical Plaza Logo">
+    </div>
+    <div class="nav-actions">
+      <a href="https://habarihealth.com/" target="_blank" class="nav-btn"><i class="fas fa-calendar-check"></i> Book Healthcare</a>
+      <button class="icon-btn" id="themeToggle" title="Switch theme"><i class="fas fa-moon"></i></button>
+      <button class="icon-btn" id="viewToggle" title="Toggle view"><i class="fas fa-th-list"></i></button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcEjafghV26Xt5NYZZaQ-UI9JIj_ZSXiNopw&s" class="hero-logo" alt="Habari Medical Plaza Banner">
+      <div class="hero-content">
+        <h1>Habari Medical Plaza and Groups</h1>
+        <div class="tagline">Unified Healthcare Ecosystem</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <a href="#" class="quick-btn" id="quickCenters"><i class="fas fa-hospital"></i> Centers</a>
+    <a href="#" class="quick-btn" id="quickHabariDOC"><i class="fas fa-laptop-medical"></i> Consult a doctor online</a>
+    <a href="#" class="quick-btn" id="quickPharmacy"><i class="fas fa-pills"></i> Get your medication now</a>
+    <a href="#" class="quick-btn" id="quickWastina"><i class="fas fa-heart"></i> Sponsor your loved ones</a>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-number">60,000+</span><br><span class="stat-label">Patients Served</span></div>
+    <div class="stat-item"><span class="stat-number">150+</span><br><span class="stat-label">Doctors & Specialists</span></div>
+    <div class="stat-item"><span class="stat-number">4</span><br><span class="stat-label">Centers & Platforms</span></div>
+  </div>
+
+  <div class="search-wrapper">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" list="searchSuggestions" placeholder="Search by name, service, specialty...">
+      <datalist id="searchSuggestions"></datalist>
+    </div>
+    <div class="result-stats" id="resultStats">Loading directory...</div>
+  </div>
+
+  <div class="cards-grid" id="cardsContainer"></div>
+
+  <footer>
+    <div class="footer-box">
+      <div><strong>For general inquiries:</strong> 9873 / +251 96 383 8485</div>
+      <div class="footer-tabs" id="footerTabs">
+        <span class="footer-tab active" data-category="centers">Centers</span>
+        <span class="footer-tab" data-category="telemedicine">Telemedicine</span>
+        <span class="footer-tab" data-category="online_pharmacy">Online Pharmacy</span>
+        <span class="footer-tab" data-category="products">Products</span>
+        <a href="mailto:info@habaridoc.com?subject=Feedback%20for%20Habari" class="footer-tab">Give Feedback</a>
+      </div>
+      <div>Last edited: May 17, 2026</div>
+    </div>
+  </footer>
+</div>
+
+<a href="tel:+251963838485" style="position:fixed; bottom:2rem; right:2rem; background:var(--accent-dark); color:#fff; width:55px; height:55px; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(0,0,0,0.4); cursor:pointer; z-index:99; font-size:1.5rem; transition:0.2s;"><i class="fas fa-phone-alt"></i></a>
+
+<script>
+  const directoryItems = [
+    {
+      type: "Medical Plaza", name: "Habari Medical Plaza",
+      short_description: "Hub of Specialty and sub-specialty service",
+      logo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcEjafghV26Xt5NYZZaQ-UI9JIj_ZSXiNopw&s",
+      address: "NOC Building, next to NOC Gas Station, near Civil Service College, Addis Ababa",
+      phone: ["+251961588888","9873"],
+      hours: "24/7 emergency physician available, specialty OPD Mon-Fri 8am-5PM, Sat 8am-12pm",
+      emergency_247: true,
+      services_general: "Internal Medicine (Infectious disease, Gastroenterology, Endocrinology, Nutrition, Cardiology, Oncology, Pulmonology), Emergency medicine, Dermatology, Pediatric, ENT, Dental, Ophthalmology, OBGYN, Psychiatry, Travel medicine, Telemedicine, Advanced Lab",
+      services_special: "24/7 Radiology (CT, Ultrasound, X-ray, Scope), 24/7 Ophthalmology, ENT, Gastroenterology, 24/7 helpline 9873 attended by doctors",
+      booking_url: "https://habarihealth.com/",
+      map_link: "https://maps.app.goo.gl/Zwk7DqL4GqZTrxbv6",
+      social: { website:"https://habarihealth.com/", email:"plaza@habarihealth.com", telegram:"https://t.me/HabariDocdigitalhealth", whatsapp:"https://wa.me/+251963838485", tiktok:"https://www.tiktok.com/@habarimedicalplaza", facebook:"https://web.facebook.com/HabariDoc", instagram:"https://www.instagram.com/habari_9873/", linkedin:"https://www.linkedin.com/company/habaridoc/" },
+      additional_notes: "2 story parking & restaurant available",
+      doctors: [
+        { name: "Dr. Abel Tadesse", specialty: "Internal Medicine", schedule: "Mon-Fri 8am-5pm" },
+        { name: "Dr. Sara Bekele", specialty: "Pediatrics", schedule: "Mon-Sat 9am-4pm" },
+        { name: "Dr. Yonas Hailu", specialty: "Dermatology", schedule: "Tue,Thu 2pm-6pm" }
+      ]
+    },
+    {
+      type: "Medical Center", name: "American Medical and MCH Center",
+      short_description: "Speciality and subspeciality center for Internal medicine, Maternal and Child health, and Travel Medicine Service provider",
+      logo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZwnXFfTeIdLYnYfeTSid5Ond_TQs4g6RHyg&s",
+      address: "Inside Sunshine Real Estate Compound, around CMC, on the way to Kara, Addis Ababa",
+      phone: ["8551","+251-116-678004","+251-116-678020","+251-949648401"],
+      hours: "24/7 MCH specialty and Primary care service, Internal Medicine speciality OPD Mon-Sat 8am-8PM",
+      emergency_247: true,
+      services_general: "Internal Medicine, Infectious disease, Gastroenterology, Endocrinology, Nutrition, Cardiology, Oncology, Dermatology, Pediatric, OBGYN, Psychiatry, Travel medicine, Telemedicine",
+      services_special: "Vaccination Service for travelers and children, Sleep study (PSG), Certified US/UK embassy visa medical clearance, Stress ECG, Holter Monitor, ABPM, Pediatric and adult Echo, Spirometry, Advanced Laboratory, Comprehensive check-up, Adult ICU, Labor & delivery, NICU, 24/7 Ambulance, 24/7 pharmacy",
+      booking_url: "https://amcethiopia.com/book-an-appointment-american-medical-center-ethiopia.html",
+      map_link: "https://www.google.com/maps/place/American+Medical+Center/@9.031014,38.8490357,17z",
+      social: { website:"https://amcethiopia.com/", email:"ethiopiaamc@gmail.com", telegram:"https://t.me/AmericanMedicalCenterEthiopia", whatsapp:"https://api.whatsapp.com/send/?phone=%2B251949648401&text&type=phone_number", tiktok:"https://www.tiktok.com/@american_medicalcenter", facebook:"https://web.facebook.com/AmericanMedicalCenterEthiopia", instagram:"https://www.instagram.com/american_medicalcenter/", linkedin:"https://www.linkedin.com/company/american-medical-center-et" },
+      additional_notes: "Telemedicine service available; multi-language staff",
+      doctors: [
+        { name: "Dr. Meron Tesfaye", specialty: "OBGYN", schedule: "Mon-Sat 8am-5pm" },
+        { name: "Dr. Dawit Alemu", specialty: "Gastroenterology", schedule: "Mon,Wed,Fri 9am-3pm" }
+      ]
+    },
+    {
+      type: "Medical Center", name: "Samaritan Surgical Center",
+      short_description: "Comprehensive Surgical center",
+      logo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsJgbPRC9CiggidrqdWgJQNoqNMszgeLNDVg&s",
+      address: "CMC inside sunshine real estate, Lemi kura sub-city, Addis Ababa",
+      phone: ["+251116680003","+251944444801","0944444800"],
+      hours: "24/7 Primary care service, Surgical speciality OPD Mon-Fri 8am-5PM, Sat 8am-12pm",
+      emergency_247: true,
+      services_general: "General surgery, ENT, Urology, Orthopedics, Colorectal surgery, Plastic surgery, Neurosurgery, Vascular surgery, Hepatobiliary surgery",
+      services_special: "Laparoscopic Surgery, Plastic and reconstructive surgery, Dialysis, Surgical ICU",
+      booking_url: "https://drsamuelhailu.com/booking/",
+      map_link: "https://www.google.com/maps/place//@8.9369274,38.7472896,3276m",
+      social: { website:"https://www.samaritansc.com/", email:"Samaritanscc@gmail.com", telegram:"https://t.me/samaritansscethiopia", instagram:"https://www.instagram.com/samaritansurgical/", linkedin:"https://www.linkedin.com/company/samaritansurgical", tiktok:"https://www.tiktok.com/@samaritan_surgical_cent" },
+      additional_notes: "Orthopaedic booking only via provided link",
+      doctors: [
+        { name: "Dr. Samuel Hailu", specialty: "General & Laparoscopic Surgery", schedule: "Mon-Fri 8am-5pm" },
+        { name: "Dr. Rahel Getachew", specialty: "Plastic Surgery", schedule: "Mon,Wed,Fri 10am-4pm" }
+      ]
+    },
+    {
+      type: "Medical Center", name: "Axon Stroke and Spine Center",
+      short_description: "Comprehensive Neurology specialty and sub-specialty center",
+      logo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrX-Z3du5LQyGyeRDb2278-fsdCEJpcAfD-A&s",
+      address: "Branch 1: CMC, Inside Sunshine Real-Estate Compound, Lemi kura | Branch 2: Wossen, 500m up from Wossen Grocery to Kara",
+      phone: ["+251974788888","+251940155606","+251957040103"],
+      hours: "24/7 Primary care, Neurology OPD Mon-Fri 8am-5PM, Sat 8am-12pm",
+      emergency_247: true,
+      services_general: "General Neurology, Emergency Stroke Service, Endovascular Procedures, Interventional Pain Management, Neurosurgery, ICU care, Rehabilitation Services",
+      services_special: "Biplane angiography, CTH lab, EEG, EMG, NCS",
+      booking_url: "https://dev.ethiopiastroke.com/contact-us/",
+      map_link_branch1: "https://www.google.com/maps/place/Axon+stroke+and+spine+center/@9.031363,38.8518463,819m",
+      map_link_branch2: "https://www.google.com/maps/place/Axon+Neurology+Specialty+Center/@9.03475,38.8479885,819m",
+      social: { website:"https://ethiopiastroke.com/", email:"info@ethiopiastroke.com", telegram:"https://t.me/axon_ssc_official_telegram_group", tiktok:"https://www.tiktok.com/@axon.stroke.spine", facebook:"https://web.facebook.com/profile.php?id=100092109993264", instagram:"https://www.instagram.com/axon_stroke_spine_center", linkedin:"https://www.linkedin.com/company/axon-stroke-spine-center-official" },
+      additional_notes: "Two convenient locations; state-of-the-art stroke intervention",
+      multiBranch: true,
+      doctors: [
+        { name: "Dr. Nahom Worku", specialty: "Neurology", schedule: "Mon-Fri 8am-5pm" },
+        { name: "Dr. Helen Tekle", specialty: "Interventional Neuroradiology", schedule: "Tue,Thu 9am-2pm" }
+      ]
+    },
+    {
+      type: "Digital Health", name: "HabariDOC",
+      short_description: "Telemedicine platform – Video consultation with Specialists and subspecialists, integrated EHR",
+      logo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIfivfFvly7kcasqJgp3DE1Jc4iB0dd3KofA&s",
+      phone: ["+251961588888","9873"],
+      availability: "24/7",
+      booking_url: "https://habaridoc.com/",
+      key_action: "See a Doctor Now",
+      app_links: { ios:"https://apps.apple.com/za/app/habaridoc/id6474964053", android:"https://play.google.com/store/apps/details?id=com.GlobalHealthcareConsultancy.HabariDOC" },
+      social: { website:"https://habaridoc.com/", facebook:"https://web.facebook.com/HabariDoc", twitter:"https://x.com/HabariDoc", instagram:"https://instagram.com/habaridoc", linkedin:"https://www.linkedin.com/company/habaridoc/", telegram:"https://t.me/HabariDocdigitalhealth", whatsapp:"https://wa.me/+251963838485", tiktok:"https://www.tiktok.com/@habarimedicalplaza", email:"info@habaridoc.com" },
+      additional_notes: "Available on App Store & Google Play",
+      doctors: []
+    },
+    {
+      type: "Digital Health", name: "Habari Pharmacy",
+      short_description: "Online pharmacy and delivery service",
+      logo_url: "https://play-lh.googleusercontent.com/yJOzcdqyI80jPDNo-aA87OHnOcRAUnp1qmRzalk204zC6RW5erho9Vli2YlTHUT7CeAAKY5kcwDiyqnxzVg-Aw=w600-h300-pc0xffffff-pd",
+      phone: ["+251961588888","9873"],
+      availability: "24/7",
+      booking_url: "https://habaripharmacy.com/",
+      key_action: "Get your medicine now",
+      app_links: { ios:"https://apps.apple.com/us/app/habari-pharmacy/id6747916313", android:"https://play.google.com/store/apps/details?id=com.habaripharmacy.com" },
+      social: { website:"https://habaripharmacy.com/", whatsapp:"https://wa.me/+251963838485", email:"info@habaridoc.com" },
+      additional_notes: "Find Prescription medication & get medication delivery",
+      doctors: []
+    },
+    {
+      type: "Product", name: "Wastina",
+      short_description: "Diaspora-Sponsored healthcare – support your loved ones back home",
+      logo_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkRAV2V7lbG17qtapwg3wopIyYMHxwZbLYEg&s",
+      phone: ["+251-11-667-80-04","+251-11-667-80-07","+251-11-667-80-20","8551"],
+      availability: "24/7",
+      booking_url: "https://mywastina.com/",
+      key_action: "Sponsor Your Loved Ones",
+      social: { website:"https://mywastina.com/", facebook:"https://web.facebook.com/mywastina/", twitter:"https://x.com/mywastina", instagram:"https://www.instagram.com/mywastina/", linkedin:"https://www.linkedin.com/company/mywastina/", tiktok:"https://www.tiktok.com/@mywastina", whatsapp:"https://wa.me/+251963838485", email:"Support@mywastina.com" },
+      additional_notes: "Healthcare financing",
+      doctors: []
+    }
+  ];
+
+  const searchInput = document.getElementById('searchInput');
+  const container = document.getElementById('cardsContainer');
+  const statsSpan = document.getElementById('resultStats');
+  const datalist = document.getElementById('searchSuggestions');
+  let activeFilterCategory = '';
+  let activeView = 'grid';
+  const viewToggle = document.getElementById('viewToggle');
+
+  function buildDatalist() {
+    const terms = new Set();
+    directoryItems.forEach(item => {
+      terms.add(item.name);
+      terms.add(item.type);
+      const allServices = (item.services_general||'') + ',' + (item.services_special||'');
+      allServices.split(',').forEach(s => terms.add(s.trim()));
+      if (item.doctors) item.doctors.forEach(d => { terms.add(d.name); terms.add(d.specialty); });
+    });
+    datalist.innerHTML = '';
+    [...terms].sort().forEach(term => {
+      const option = document.createElement('option');
+      option.value = term;
+      datalist.appendChild(option);
+    });
+  }
+
+  function getReviewLink(item) {
+    if (item.map_link) return item.map_link;
+    if (item.name === 'HabariDOC') return 'https://play.google.com/store/apps/details?id=com.GlobalHealthcareConsultancy.HabariDOC&hl=en&gl=US';
+    if (item.name === 'Habari Pharmacy') return 'https://play.google.com/store/apps/details?id=com.habaripharmacy.com&hl=en&gl=US';
+    return item.booking_url || '#';
+  }
+
+  function setActiveFooterTab(category) {
+    document.querySelectorAll('#footerTabs .footer-tab').forEach(tab => {
+      if (tab.dataset.category === category) tab.classList.add('active');
+      else tab.classList.remove('active');
+    });
+  }
+
+  function renderCards() {
+    const searchText = searchInput.value.toLowerCase();
+    const category = activeFilterCategory;
+    const filtered = directoryItems.filter(item => {
+      if (category === 'centers' && !['Medical Center','Medical Plaza'].includes(item.type)) return false;
+      if (category === 'telemedicine' && item.name !== 'HabariDOC') return false;
+      if (category === 'online_pharmacy' && item.name !== 'Habari Pharmacy') return false;
+      if (category === 'products' && item.type !== 'Product') return false;
+      if (!searchText) return true;
+      const searchable = `${item.name} ${item.short_description} ${item.services_general||''} ${item.services_special||''} ${item.address||''} ${item.type} ${(item.doctors||[]).map(d=>d.name+' '+d.specialty).join(' ')}`.toLowerCase();
+      return searchable.includes(searchText);
+    });
+
+    statsSpan.innerText = `Showing ${filtered.length} of ${directoryItems.length} centers & services`;
+    if (filtered.length === 0) {
+      container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem; background:rgba(0,0,0,0.3); border-radius:2rem;">🤍 No matching results.</div>`;
+      return;
+    }
+
+    container.innerHTML = filtered.map(item => {
+      const emergencyBadge = item.emergency_247 ? '<span class="badge emergency-tag"><i class="fas fa-bolt"></i> 24/7 Emergency</span> ' : '';
+      const phoneHtml = item.phone ? `<div class="info-row"><i class="fas fa-phone-alt"></i><span>${item.phone.map(p => `<a href="tel:${p.replace(/[^0-9+]/g, '')}">${p}</a>`).join(" • ")}</span></div>` : '';
+      let addressHtml = '';
+      if (item.address) {
+        if (item.name === "Axon Stroke and Spine Center") {
+          addressHtml = `<div class="info-row"><i class="fas fa-location-dot"></i><span>${item.address}<br><a href="${item.map_link_branch1}" target="_blank">🗺️ Branch 1 Map</a> | <a href="${item.map_link_branch2}" target="_blank">🗺️ Branch 2 Map</a></span></div>`;
+        } else if (item.map_link) {
+          addressHtml = `<div class="info-row"><i class="fas fa-location-dot"></i><span>${item.address} <a href="${item.map_link}" target="_blank"><i class="fas fa-external-link-alt"></i> Directions</a></span></div>`;
+        } else {
+          addressHtml = `<div class="info-row"><i class="fas fa-location-dot"></i><span>${item.address}</span></div>`;
+        }
+      }
+      const actionBtn = item.booking_url ? `<a href="${item.booking_url}" target="_blank" class="btn btn-primary"><i class="fas fa-arrow-right"></i> ${item.key_action || (item.type.includes("Medical") ? "Book Appointment" : "Access Service")}</a>` : '';
+      const reviewLink = getReviewLink(item);
+      const reviewBtn = reviewLink ? `<a href="${reviewLink}" target="_blank" class="btn btn-outline"><i class="fas fa-star"></i> Rate & Review</a>` : '';
+
+      const genServices = item.services_general ? item.services_general.split(',').map(s=>s.trim()) : [];
+      const specServices = item.services_special ? item.services_special.split(',').map(s=>s.trim()) : [];
+      const allServices = [...genServices, ...specServices];
+      const servicesListHtml = allServices.length ? `<ul style="list-style:none; padding-left:0;">${allServices.map(s => `<li><span class="service-tag">${s}</span></li>`).join('')}</ul>` : '<p>No services listed.</p>';
+
+      let doctorsHtml = '';
+      if (item.doctors && item.doctors.length) {
+        doctorsHtml = `<ul style="list-style:none; padding-left:0;">${item.doctors.map(d => `<li style="margin-bottom:0.5rem;"><strong>${d.name}</strong> – ${d.specialty}<br><small>Schedule: ${d.schedule}</small></li>`).join('')}</ul>`;
+      } else if (!item.doctors && item.type.includes('Medical')) {
+        doctorsHtml = '<p>Doctor information not available.</p>';
+      } else {
+        doctorsHtml = '<p>No physical doctors – digital service.</p>';
+      }
+
+      let socialHtml = '';
+      if (item.social) {
+        const labels = { website:'Website', email:'Email', telegram:'Telegram', whatsapp:'WhatsApp', tiktok:'TikTok', facebook:'Facebook', instagram:'Instagram', linkedin:'LinkedIn', twitter:'Twitter' };
+        for (let [key, url] of Object.entries(item.social)) {
+          if (!url || url.trim().toLowerCase()==='n/a') continue;
+          let icon = '';
+          if (key==='website') icon = 'fas fa-globe';
+          else if (key==='email') icon = 'fas fa-envelope';
+          else if (key==='telegram') icon = 'fab fa-telegram-plane';
+          else if (key==='whatsapp') icon = 'fab fa-whatsapp';
+          else if (key==='tiktok') icon = 'fab fa-tiktok';
+          else if (key==='facebook') icon = 'fab fa-facebook-f';
+          else if (key==='instagram') icon = 'fab fa-instagram';
+          else if (key==='linkedin') icon = 'fab fa-linkedin-in';
+          else if (key==='twitter') icon = 'fab fa-twitter';
+          else icon = 'fas fa-link';
+          socialHtml += `<a href="${url}" target="_blank" class="social-icon" title="${labels[key] || key}"><i class="${icon}"></i> <span class="social-label">${labels[key] || key}</span></a>`;
+        }
+        if (item.app_links) {
+          if (item.app_links.ios) socialHtml += `<a href="${item.app_links.ios}" target="_blank" class="social-icon" title="App Store"><i class="fab fa-apple"></i> <span>App Store</span></a>`;
+          if (item.app_links.android) socialHtml += `<a href="${item.app_links.android}" target="_blank" class="social-icon" title="Google Play"><i class="fab fa-google-play"></i> <span>Google Play</span></a>`;
+        }
+      }
+
+      const uid = 'item-' + Math.random().toString(36).substr(2, 8);
+      return `
+        <div class="card">
+          <div class="card-header">
+            <img class="card-logo" src="${item.logo_url}" alt="${item.name}" loading="lazy" onerror="this.src='https://placehold.co/200x200?text=Habari'">
+            <div class="card-title">
+              <h3>${item.name}</h3>
+              <span class="badge">${item.type}</span> ${emergencyBadge}
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="desc">${item.short_description}</div>
+            ${addressHtml} ${phoneHtml}
+            <div class="info-row"><i class="far fa-clock"></i><span>${item.hours || (item.availability ? "Available: "+item.availability : "Contact for hours")}</span></div>
+            <div class="btn-group">
+              ${actionBtn} ${reviewBtn}
+              <button class="btn btn-outline" onclick="document.getElementById('services-${uid}').classList.toggle('show')"><i class="fas fa-list"></i> Services</button>
+              <button class="btn btn-outline" onclick="document.getElementById('doctors-${uid}').classList.toggle('show')"><i class="fas fa-user-md"></i> Doctors</button>
+            </div>
+            <div id="services-${uid}" class="hidden-content">${servicesListHtml}</div>
+            <div id="doctors-${uid}" class="hidden-content">${doctorsHtml}</div>
+            ${socialHtml ? '<div class="social-links">'+socialHtml+'</div>' : ''}
+            ${item.additional_notes ? `<div class="additional-note"><i class="fas fa-info-circle"></i> ${item.additional_notes}</div>` : ''}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  // Footer tab click
+  document.querySelectorAll('#footerTabs .footer-tab[data-category]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeFilterCategory = tab.dataset.category;
+      searchInput.value = '';
+      setActiveFooterTab(activeFilterCategory);
+      renderCards();
+      window.scrollTo({ top: container.offsetTop - 100, behavior: 'smooth' });
+    });
+  });
+
+  // Quick action buttons
+  document.getElementById('quickCenters').addEventListener('click', (e) => { e.preventDefault(); activeFilterCategory = 'centers'; searchInput.value = ''; setActiveFooterTab('centers'); renderCards(); });
+  document.getElementById('quickHabariDOC').addEventListener('click', (e) => { e.preventDefault(); activeFilterCategory = 'telemedicine'; searchInput.value = ''; setActiveFooterTab('telemedicine'); renderCards(); });
+  document.getElementById('quickPharmacy').addEventListener('click', (e) => { e.preventDefault(); activeFilterCategory = 'online_pharmacy'; searchInput.value = ''; setActiveFooterTab('online_pharmacy'); renderCards(); });
+  document.getElementById('quickWastina').addEventListener('click', (e) => { e.preventDefault(); activeFilterCategory = 'products'; searchInput.value = ''; setActiveFooterTab('products'); renderCards(); });
+
+  // Search input: clear filter when typing
+  searchInput.addEventListener('input', () => {
+    activeFilterCategory = '';
+    setActiveFooterTab('');
+    renderCards();
+  });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('light');
+    themeToggle.innerHTML = document.body.classList.contains('light') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  });
+
+  // View toggle
+  viewToggle.addEventListener('click', () => {
+    if (activeView === 'grid') {
+      container.classList.add('list-view');
+      activeView = 'list';
+      viewToggle.innerHTML = '<i class="fas fa-th"></i>';
+    } else {
+      container.classList.remove('list-view');
+      activeView = 'grid';
+      viewToggle.innerHTML = '<i class="fas fa-th-list"></i>';
+    }
+  });
+
+  // Initial load
+  buildDatalist();
+  setActiveFooterTab('centers');
+  activeFilterCategory = '';
+  renderCards();
+</script>
+</body>
+</html>
